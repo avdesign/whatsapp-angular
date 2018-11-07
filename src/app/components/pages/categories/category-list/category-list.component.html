@@ -32,4 +32,6 @@
        </table>
     </div>
 </div>
-<category-create></category-create>
+<category-create 
+    (onSuccess)="onInsertSuccess($event)" (onError)="onInsertError($event)">
+</category-create>
