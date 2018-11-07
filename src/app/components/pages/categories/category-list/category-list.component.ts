@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CategoryCreateComponent } from '../category-create/category-create.component';
-
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
 
 @Component({
   selector: 'category-list',
@@ -12,8 +12,10 @@ export class CategoryListComponent implements OnInit {
 
   categories = [];
 
-  @ViewChild(CategoryCreateComponent)
-  categoryCreate: CategoryCreateComponent;
+  @ViewChild(CategoryCreateComponent) categoryCreate: CategoryCreateComponent;
+  @ViewChild(CategoryEditComponent) categoryEdit: CategoryEditComponent;
+  
+  categoryId:  number;
 
   constructor(private http: HttpClient) { 
     
@@ -37,19 +39,37 @@ export class CategoryListComponent implements OnInit {
       });
   }
 
-  showModalInsert(){
+  showModalCreate(){
     this.categoryCreate.showModal();
   }
 
-  onInsertSuccess($event: any){
-    console.log($event);
+  showModalEdit(categoryId: number){
+    this.categoryId = categoryId;
+    this.categoryEdit.showModal();
+  }
+
+
+  onCreateSuccess($event: any){
+    //console.log($event);
     this.getCategories();
   }
 
 
-  onInsertError($event: HttpErrorResponse){
-    console.log($event);
+  onCreateError($event: HttpErrorResponse){
+    //console.log($event);
   }
+
+
+  onEditSuccess($event: any){
+    //console.log($event);
+    this.getCategories();
+  }
+
+
+  onEditError($event: HttpErrorResponse){
+    //console.log($event);
+  }
+
 
 
 

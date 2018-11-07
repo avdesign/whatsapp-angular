@@ -4,7 +4,7 @@
     </div>
     <div class="row">
        <p>
-    <button type="button" class="btn btn-primary btn-sm" (click)="showModalInsert()">Adicionar</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="showModalCreate()">Adicionar</button>
        </p>
     </div>
     <div class="row">
@@ -26,12 +26,22 @@
                    <i [ngClass]="category.active ? 'fas fa-check' : 'fas fa-times'"></i>
                 </td>
                 <td>{{category.created_at.date | date: 'dd/MM/yyyy'}}</td>
-                <td>Excluir | Editar</td>
+                <td>
+                    <a href="javascript:void(0)" >Excluir</a> |
+                    <a href="javascript:void(0)" (click)="showModalEdit(category.id)">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
              </tr>
           </tbody>
        </table>
     </div>
 </div>
 <category-create 
-    (onSuccess)="onInsertSuccess($event)" (onError)="onInsertError($event)">
+    (onSuccess)="onCreateSuccess($event)" 
+    (onError)="onCreateError($event)">
 </category-create>
+<category-edit [categoryId]="categoryId"
+    (onSuccess)="onEditSuccess($event)" 
+    (onError)="onEditError($event)">
+</category-edit>
