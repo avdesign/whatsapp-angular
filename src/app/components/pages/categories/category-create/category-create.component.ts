@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter  } from '@angular/core';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CategoryInterface } from '../../../../interfaces/categoryInterface';
+import { CategoryHttpService } from '../../../../services/http/category-http.service';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  category = {
+  category: CategoryInterface = {
     name: '',
     active: true
   }
@@ -20,25 +22,18 @@ export class CategoryCreateComponent implements OnInit {
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private categoryHttp: CategoryHttpService) { }
 
   ngOnInit() {
   }
 
   submit(){
-    const token = window.localStorage.getItem('token');
-    //console.log(token);
-    this.http.post('http://whatsapp.test/api/categories', this.category, {
-      headers: {
-        'Authorization': `Bearer ${token}` 
-      }
-    })
-    .subscribe((category) => {
-      this.onSuccess.emit(category);
-      this.modal.hide();
-      //console.log(category);
-      //this.getCategories();
-    }, error =>  this.onError.emit(error));
+    this.categoryHttp
+      .create(this.category)
+      .subscribe((category) => {
+        this.onSuccess.emit(category);
+        this.modal.hide();
+      }, error =>  this.onError.emit(error));  
   }
 
   showModal(){

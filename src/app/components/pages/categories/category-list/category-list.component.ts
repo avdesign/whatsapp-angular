@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryCreateComponent } from '../category-create/category-create.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { CategoryDeleteComponent } from '../category-delete/category-delete.component';
+import { CategoryHttpService } from '../../../../services/http/category-http.service';
+import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { CategoryDeleteComponent } from '../category-delete/category-delete.comp
 })
 export class CategoryListComponent implements OnInit {
 
-  categories = [];
+  categories: Array<CategoryInterface> = [];
 
   @ViewChild(CategoryCreateComponent) categoryCreate: CategoryCreateComponent;
   @ViewChild(CategoryEditComponent) categoryEdit: CategoryEditComponent;
@@ -20,9 +22,7 @@ export class CategoryListComponent implements OnInit {
   
   categoryId:  number;
 
-  constructor(private http: HttpClient) { 
-    
-  }
+  constructor(public categoryHttp:CategoryHttpService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -30,14 +30,8 @@ export class CategoryListComponent implements OnInit {
 
 
   getCategories(){
-    const token = window.localStorage.getItem('token');
-    this.http.get<{data:Array<any>}>('http://whatsapp.test/api/categories', {
-      headers: {
-        'Authorization': `Bearer ${token}` 
-      }
-    })
+    this.categoryHttp.list()
       .subscribe( response => {
-        //response.data[0].active = false;
         this.categories = response.data
       });
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
+import { CategoryHttpService } from '../../../../services/http/category-http.service';
+import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 
 @Component({
   selector: 'category-delete',
@@ -9,7 +11,7 @@ import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 })
 export class CategoryDeleteComponent implements OnInit {
 
-  category = null;
+  category: CategoryInterface = null;
 
   _categoryId: null; 
 
@@ -19,7 +21,7 @@ export class CategoryDeleteComponent implements OnInit {
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private categoryHttp: CategoryHttpService) { }
 
   ngOnInit() {
   }
@@ -29,31 +31,20 @@ export class CategoryDeleteComponent implements OnInit {
   set categoryId(value){
     this._categoryId = value;
     if (this._categoryId) {
-      const token = window.localStorage.getItem('token');
-      this.http.get<{data: any}>(`http://whatsapp.test/api/categories/${value}`, {
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-      })
-        .subscribe( response => {this.category = response.data});
+      this.categoryHttp
+        .get(this._categoryId)
+        .subscribe(category => this.category = category)      
     }
-
   }
 
 
   destroy(){
-    const token = window.localStorage.getItem('token');
-    this.http.delete(`http://whatsapp.test/api/categories/${this._categoryId}`, {
-      headers: {
-        'Authorization': `Bearer ${token}` 
-      }
-    })
-    .subscribe((category) => {
-      this.onSuccess.emit(category);
-      this.modal.hide();
-      //console.log(category);
-      //this.getCategories();
-    }, error =>  this.onError.emit(error));
+    this.categoryHttp
+      .destroy(this._categoryId)
+      .subscribe((category) => {
+        this.onSuccess.emit(category);
+        this.modal.hide();
+      }, error =>  this.onError.emit(error));
   }
 
   showModal(){
