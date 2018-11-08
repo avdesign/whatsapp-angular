@@ -13,6 +13,7 @@ import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-er
 import { ModalComponent } from './components/bootstrap/modal/modal.component';
 import { CategoryCreateComponent } from './components/pages/categories/category-create/category-create.component';
 import { CategoryEditComponent } from './components/pages/categories/category-edit/category-edit.component';
+import { CategoryDeleteComponent } from './components/pages/categories/category-delete/category-delete.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
     AlertErrorComponent,
     ModalComponent,
     CategoryCreateComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    CategoryDeleteComponent
     
   ],
   imports: [

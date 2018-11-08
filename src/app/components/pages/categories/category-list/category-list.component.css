@@ -1,6 +1,10 @@
-.fa-check {
+td>a>i.fas.fa-check {
     color: green;
  }
- .fa-times {
+ td>a>i.fas.fa-times {
     color: red;
+ }
+
+ td>a>i.fas.fa-trash-alt{
+     color: red;
  }

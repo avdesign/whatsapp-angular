@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CategoryCreateComponent } from '../category-create/category-create.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { CategoryDeleteComponent } from '../category-delete/category-delete.component';
+
 
 @Component({
   selector: 'category-list',
@@ -14,6 +16,7 @@ export class CategoryListComponent implements OnInit {
 
   @ViewChild(CategoryCreateComponent) categoryCreate: CategoryCreateComponent;
   @ViewChild(CategoryEditComponent) categoryEdit: CategoryEditComponent;
+  @ViewChild(CategoryDeleteComponent) categoryDelete: CategoryDeleteComponent;
   
   categoryId:  number;
 
@@ -48,6 +51,11 @@ export class CategoryListComponent implements OnInit {
     this.categoryEdit.showModal();
   }
 
+  showModalDelete(categoryId: number){
+    this.categoryId = categoryId;
+    this.categoryDelete.showModal();
+  }
+
 
   onCreateSuccess($event: any){
     //console.log($event);
@@ -69,6 +77,18 @@ export class CategoryListComponent implements OnInit {
   onEditError($event: HttpErrorResponse){
     //console.log($event);
   }
+
+  onDeleteSuccess($event: any){
+    //console.log($event);
+    this.getCategories();
+  }
+
+
+  onDeleteError($event: HttpErrorResponse){
+    //console.log($event);
+  }
+
+  
 
 
 

@@ -1,20 +1,17 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input  } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 
 @Component({
-  selector: 'category-edit',
-  templateUrl: './category-edit.component.html',
-  styleUrls: ['./category-edit.component.css']
+  selector: 'category-delete',
+  templateUrl: './category-delete.component.html',
+  styleUrls: ['./category-delete.component.css']
 })
-export class CategoryEditComponent implements OnInit {
+export class CategoryDeleteComponent implements OnInit {
 
-  category = {
-    name: '',
-    active: true
-  }
+  category = null;
 
-  _categoryId: number; 
+  _categoryId: null; 
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
@@ -26,6 +23,7 @@ export class CategoryEditComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
   @Input()
   set categoryId(value){
@@ -39,13 +37,13 @@ export class CategoryEditComponent implements OnInit {
       })
         .subscribe( response => {this.category = response.data});
     }
+
   }
 
 
-  submit(){
+  destroy(){
     const token = window.localStorage.getItem('token');
-    //console.log(token);
-    this.http.put(`http://whatsapp.test/api/categories/${this._categoryId}`, this.category, {
+    this.http.delete(`http://whatsapp.test/api/categories/${this._categoryId}`, {
       headers: {
         'Authorization': `Bearer ${token}` 
       }
@@ -58,7 +56,6 @@ export class CategoryEditComponent implements OnInit {
     }, error =>  this.onError.emit(error));
   }
 
-
   showModal(){
     this.modal.show();
   }
@@ -68,6 +65,5 @@ export class CategoryEditComponent implements OnInit {
     // fazer algo quando model for fechado
     //console.log($event);
   }
-
 
 }
