@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryCreateComponent } from '../category-create/category-create.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { CategoryDeleteComponent } from '../category-delete/category-delete.component';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
 import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 
+import { CategoryEditService } from './category-edit-service';
+import { CategoryCreateService } from './category-create-service';
+import { CategoryDeleteService } from './category-delete-service';
 
 @Component({
   selector: 'category-list',
@@ -15,6 +17,11 @@ import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 export class CategoryListComponent implements OnInit {
 
   categories: Array<CategoryInterface> = [];
+  pagination = {
+    page: 1,
+    totalItems: 0,
+    itemsPerPage: 15
+  };
 
   @ViewChild(CategoryCreateComponent) categoryCreate: CategoryCreateComponent;
   @ViewChild(CategoryEditComponent) categoryEdit: CategoryEditComponent;
@@ -22,71 +29,31 @@ export class CategoryListComponent implements OnInit {
   
   categoryId:  number;
 
-  constructor(public categoryHttp:CategoryHttpService) { }
+  constructor(private categoryHttp:CategoryHttpService,
+              protected CategoryEditService: CategoryEditService,
+              protected CategoryCreateService: CategoryCreateService,
+              protected CategoryDeleteService: CategoryDeleteService) { 
+      this.CategoryEditService.categoryListComponent = this;
+      this.CategoryCreateService.categoryListComponent = this;
+      this.CategoryDeleteService.categoryListComponent = this;
+    }
 
   ngOnInit() {
     this.getCategories();
   }
 
-
   getCategories(){
-    this.categoryHttp.list()
+    this.categoryHttp.list(this.pagination.page)
       .subscribe( response => {
-        this.categories = response.data
+        this.categories = response.data,
+        this.pagination.totalItems = response.meta.total,
+        this.pagination.itemsPerPage = response.meta.per_page
       });
   }
 
-  showModalCreate(){
-    this.categoryCreate.showModal();
-  }
-
-  showModalEdit(categoryId: number){
-    this.categoryId = categoryId;
-    this.categoryEdit.showModal();
-  }
-
-  showModalDelete(categoryId: number){
-    this.categoryId = categoryId;
-    this.categoryDelete.showModal();
-  }
-
-
-  onCreateSuccess($event: any){
-    //console.log($event);
+  pageChanged(page){
+    this.pagination.page = page;
     this.getCategories();
   }
-
-
-  onCreateError($event: HttpErrorResponse){
-    //console.log($event);
-  }
-
-
-  onEditSuccess($event: any){
-    //console.log($event);
-    this.getCategories();
-  }
-
-
-  onEditError($event: HttpErrorResponse){
-    //console.log($event);
-  }
-
-  onDeleteSuccess($event: any){
-    //console.log($event);
-    this.getCategories();
-  }
-
-
-  onDeleteError($event: HttpErrorResponse){
-    //console.log($event);
-  }
-
-  
-
-
-
-
- 
 
 }

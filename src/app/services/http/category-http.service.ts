@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { CategoryInterface } from '../../interfaces/categoryInterface';
@@ -15,10 +15,16 @@ export class CategoryHttpService {
 
   constructor(private http:HttpClient) { }
 
-  list(): Observable<{data: Array<CategoryInterface>}>{
+  list(page: number): Observable<{data: Array<CategoryInterface>, meta: any}>{
     const token = window.localStorage.getItem('token');
+    const params = new HttpParams({
+      fromObject: {
+        page: page + ''
+      }
+    });
     return this.http
-      .get<{data:Array<any>}>(this.baseUrl, {
+      .get<{data:Array<any>, meta: any}>(this.baseUrl, {
+        params,
         headers: {
           'Authorization': `Bearer ${token}` 
         }
@@ -30,7 +36,7 @@ export class CategoryHttpService {
     const token = window.localStorage.getItem('token');
     return this.http
       .get<{data: CategoryInterface}>
-      (`${this.baseUrl}/${id}`, {
+      (`${this.baseUrl}/${id}`, {        
         headers: {
           'Authorization': `Bearer ${token}` 
         }

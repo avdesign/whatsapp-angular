@@ -15,6 +15,8 @@ import { CategoryCreateComponent } from './components/pages/categories/category-
 import { CategoryEditComponent } from './components/pages/categories/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './components/pages/categories/category-delete/category-delete.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 const routes: Routes = [
   {
     path: '',
@@ -46,7 +48,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes) //{enableTracing:true}
+    RouterModule.forRoot(routes), //{enableTracing:true}
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
