@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input  } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from '../../../../models';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
-import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
 
 @Component({
@@ -9,9 +9,10 @@ import { CategoryHttpService } from '../../../../services/http/category-http.ser
   templateUrl: './category-edit.component.html',
   styleUrls: ['./category-edit.component.css']
 })
+
 export class CategoryEditComponent implements OnInit {
 
-  category: CategoryInterface = {
+  category: Category = {
     name: '',
     active: true
   }
@@ -59,6 +60,5 @@ export class CategoryEditComponent implements OnInit {
     // fazer algo quando model for fechado
     //console.log($event);
   }
-
 
 }

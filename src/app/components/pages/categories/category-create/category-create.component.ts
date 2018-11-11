@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter  } from '@angular/core';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
+import { Category } from '../../../../models';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { CategoryHttpService } from '../../../../services/http/category-http.ser
 })
 export class CategoryCreateComponent implements OnInit {
 
-  category: CategoryInterface = {
+  category: Category = {
     name: '',
     active: true
   }

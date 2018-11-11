@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angu
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
-import { CategoryInterface } from '../../../../interfaces/categoryInterface';
+import { Category } from '../../../../models';
 
 @Component({
   selector: 'category-delete',
@@ -11,7 +11,7 @@ import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 })
 export class CategoryDeleteComponent implements OnInit {
 
-  category: CategoryInterface = null;
+  category: Category = null;
 
   _categoryId: null; 
 

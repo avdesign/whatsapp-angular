@@ -1,0 +1,15 @@
+<form (submit)="submit()">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="categories[]">Categorias</label>
+    </div>
+    <select class="custom-select" id="categories[]" name="categories[]" multiple
+      [(ngModel)]="categoriesId">
+      <!--(change)="change($event)">-->
+      <option *ngFor="let category of categories" [ngValue]="category.id">{{category?.name}}</option>
+    </select>
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-outline-secondary" >Adicionar Categorias</button>
+    </div>
+  </div>
+</form>

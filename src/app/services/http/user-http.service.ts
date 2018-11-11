@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { SearchParams, SearchParamsBuilder } from './http-resource';
+import { Observable } from 'rxjs';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Category } from '../../models';
-import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
-
-// design pattern - Singleton
+import { User } from '../../models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryHttpService implements HttpResource<Category> {
+export class UserHttpService {
 
-  private baseUrl = 'http://whatsapp.test/api/categories';
+  private baseUrl = 'http://whatsapp.test/api/users';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  list(searchParams: SearchParams): Observable<{data: Array<Category>, meta: any}>{
+  list(searchParams: SearchParams): Observable<{data: Array<User>, meta: any}>{
     const token = window.localStorage.getItem('token');
     // makeObject -> class -> http-resource 
     const sParams = new SearchParamsBuilder(searchParams).makeObject()
@@ -34,10 +32,10 @@ export class CategoryHttpService implements HttpResource<Category> {
 
   }
 
-  get(id: number): Observable<Category>{
+  get(id: number): Observable<User>{
     const token = window.localStorage.getItem('token');
     return this.http
-      .get<{data: Category}>
+      .get<{data: User}>
       (`${this.baseUrl}/${id}`, {        
         headers: {
           'Authorization': `Bearer ${token}` 
@@ -46,10 +44,10 @@ export class CategoryHttpService implements HttpResource<Category> {
     .pipe(map(response => response.data)) //pipeline
   }
 
-  create(data: Category): Observable<Category>{
+  create(data: User): Observable<User>{
     const token = window.localStorage.getItem('token');
     return this.http
-      .post<{ data: Category }>(this.baseUrl, data, {
+      .post<{ data: User }>(this.baseUrl, data, {
         headers: {
           'Authorization': `Bearer ${token}` 
         }
@@ -57,10 +55,10 @@ export class CategoryHttpService implements HttpResource<Category> {
       .pipe(map(response => response.data)) //pipeline
   }
 
-  update(id: number, data: Category): Observable<Category>{
+  update(id: number, data: User): Observable<User>{
     const token = window.localStorage.getItem('token');
     return this.http
-      .put<{ data: Category }>(`${this.baseUrl}/${id}`, data, {
+      .put<{ data: User }>(`${this.baseUrl}/${id}`, data, {
         headers: {
           'Authorization': `Bearer ${token}` 
         }

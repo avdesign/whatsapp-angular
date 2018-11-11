@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CategoryCreateComponent } from '../category-create/category-create.component';
-import { CategoryEditComponent } from '../category-edit/category-edit.component';
-import { CategoryDeleteComponent } from '../category-delete/category-delete.component';
-import { CategoryHttpService } from '../../../../services/http/category-http.service';
-import { CategoryInterface } from '../../../../interfaces/categoryInterface';
 
+import { CategoryHttpService } from '../../../../services/http/category-http.service';
+import { Category } from '../../../../models';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { CategoryCreateComponent } from '../category-create/category-create.component';
+import { CategoryDeleteComponent } from '../category-delete/category-delete.component';
 import { CategoryEditService } from './category-edit-service';
 import { CategoryCreateService } from './category-create-service';
 import { CategoryDeleteService } from './category-delete-service';
@@ -14,9 +14,10 @@ import { CategoryDeleteService } from './category-delete-service';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
+
 export class CategoryListComponent implements OnInit {
 
-  categories: Array<CategoryInterface> = [];
+  categories: Array<Category> = [];
   pagination = {
     page: 1,
     totalItems: 0,
@@ -43,7 +44,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories(){
-    this.categoryHttp.list(this.pagination.page)
+    this.categoryHttp.list({page: this.pagination.page})
       .subscribe( response => {
         this.categories = response.data,
         this.pagination.totalItems = response.meta.total,

@@ -30,10 +30,10 @@ export class LoginComponent implements OnInit {
   submit(){
     this.http.post<any>('http://whatsapp.test/api/login', this.credentials)
       .subscribe((data) => {
-        this.router.navigate(['categories/list']);
+        this.router.navigate(['products/list']);
         const token = data.token;
         window.localStorage.setItem('token', token);
-        this.http.get('http://whatsapp.test/api/categories');
+        this.http.get('http://whatsapp.test/api/products');
       }, () => this.showMesageError = true);  
     return false;
   }

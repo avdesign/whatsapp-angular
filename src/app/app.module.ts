@@ -3,19 +3,36 @@ import { NgModule } from '@angular/core';
 ;
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router/';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryListComponent } from './components/pages/categories/category-list/category-list.component';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { ModalComponent } from './components/bootstrap/modal/modal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+// Pages
+import { LoginComponent } from './components/pages/login/login.component';
+
+import { UserCreateComponent } from './components/pages/users/user-create/user-create.component';
+import { UserListComponent } from './components/pages/users/user-list/user-list.component';
+import { UserEditComponent } from './components/pages/users/user-edit/user-edit.component';
+import { UserDeleteComponent } from './components/pages/users/user-delete/user-delete.component';
+
+import { CategoryListComponent } from './components/pages/categories/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/pages/categories/category-create/category-create.component';
 import { CategoryEditComponent } from './components/pages/categories/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './components/pages/categories/category-delete/category-delete.component';
 
-import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductListComponent } from './components/pages/products/product-list/product-list.component';
+import { ProductCreateComponent } from './components/pages/products/product-create/product-create.component';
+import { ProductEditComponent } from './components/pages/products/product-edit/product-edit.component';
+import { ProductDeleteComponent } from './components/pages/products/product-delete/product-delete.component';
+import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+
+import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
+import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+
 
 const routes: Routes = [
   {
@@ -24,24 +41,46 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-     path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'users/list', component: UserListComponent
+  },
+  {
+    path: 'products/:product/categories/list', component: ProductCategoryListComponent
+  },
+  {
+    path: 'products/list', component: ProductListComponent
   },
   {
     path: 'categories/list', component: CategoryListComponent
- }
+  }
+
+
 
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    CategoryListComponent,
     AlertErrorComponent,
     ModalComponent,
+    NumberFormatBrPipe,
+    LoginComponent,
+    UserCreateComponent,
+    UserListComponent,
+    UserEditComponent,
+    UserDeleteComponent,
+    CategoryListComponent,
     CategoryCreateComponent,
     CategoryEditComponent,
-    CategoryDeleteComponent
+    CategoryDeleteComponent,
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductDeleteComponent,
+    ProductCategoryListComponent,
+    ProductCategoryNewComponent,
     
   ],
   imports: [

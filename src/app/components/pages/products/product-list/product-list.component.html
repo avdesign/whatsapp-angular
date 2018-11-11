@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+     <h5 class="bd-title" id="content">Lista de produtos</h5>
+  </div>
+  <div class="row">
+     <p>
+          <button type="button" class="btn btn-primary btn-sm" (click)="ProductCreateService.showModalCreate()">Adicionar</button>
+     </p>
+  </div>
+  <div class="row">
+     <table class="table">
+        <thead class="thead-dark">
+           <tr>
+              <th width="10%" scope="col">ID</th>
+              <th width="40%" scope="col">Nome</th>
+              <th width="10%" scope="col">Preço</th>
+              <th width="5%"  scope="col">Status</th>
+              <th width="10%" scope="col">Data Criado</th>
+              <th width="25%" scope="col">Ações</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let product of products | paginate: {itemsPerPage: 15, currentPage: pagination.page, totalItems: pagination.totalItems}">
+              <td>#{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price | numberFormatBr}}</td>
+              <td>               
+                 <i [ngClass]="product.active ? 'fas fa-check' : 'fas fa-times'"></i>
+              </td>
+              <td>{{product.created_at.date | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                  <a href="javascript:void(0)" (click)="ProductDeleteService.showModalDelete(product.id)">
+                      <i class="fas fa-trash-alt"></i>
+                  </a> | 
+                  <a href="javascript:void(0)" (click)="ProductEditService.showModalEdit(product.id)">
+                      <i class="fas fa-edit"></i>
+                  </a> |
+                  <a [routerLink]="['/products',product.id,'categories','list']">
+                      Categorias
+                  </a>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <pagination-controls class="my-pagination" (pageChange)="pageChanged($event)"
+          previousLabel="Anterior"
+          nextLabel="Proximo">
+      </pagination-controls>
+  </div>
+</div>
+<product-create 
+  (onSuccess)="ProductCreateService.onCreateSuccess($event)" 
+  (onError)="ProductCreateService.onCreateError($event)">
+</product-create>
+<product-edit [productId]="productId"
+  (onSuccess)="ProductEditService.onEditSuccess($event)" 
+  (onError)="ProductEditService.onEditError($event)">
+</product-edit>
+<product-delete [productId]="productId"
+  (onSuccess)="ProductDeleteService.onDeleteSuccess($event)" 
+  (onError)="ProductDeleteService.onDeleteError($event)">
+</product-delete>
