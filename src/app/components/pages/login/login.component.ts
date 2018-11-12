@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'login',
@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
     password: 'secret'
   };
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private authService: AuthService, private router: Router) { 
 
   }
 
-  showMesageError = false;
+  showMessageError = false;
 
   ngOnInit() { 
     
@@ -28,15 +28,14 @@ export class LoginComponent implements OnInit {
    * Submit Form
    */
   submit(){
-    this.http.post<any>('http://whatsapp.test/api/login', this.credentials)
+    this.authService.login(this.credentials)
       .subscribe((data) => {
         this.router.navigate(['products/list']);
-        const token = data.token;
-        window.localStorage.setItem('token', token);
-        this.http.get('http://whatsapp.test/api/products');
-      }, () => this.showMesageError = true);  
+      }, () => this.showMessageError = true);  
     return false;
   }
+
+  
 
 }
 

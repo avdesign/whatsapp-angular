@@ -16,7 +16,6 @@ export class ProductHttpService implements HttpResource<Product>{
   constructor(private http:HttpClient) { }
 
   list(searchParams: SearchParams): Observable<{data: Array<Product>, meta: any}>{
-    const token = window.localStorage.getItem('token');   
     // makeObject -> class -> http-resource 
     const sParams = new SearchParamsBuilder(searchParams).makeObject()
     const params = new HttpParams({
@@ -25,56 +24,33 @@ export class ProductHttpService implements HttpResource<Product>{
 
     return this.http
       .get<{data:Array<any>, meta: any}>(this.baseUrl, {
-        params,
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
+        params
     })
 
   }
 
   get(id: number): Observable<Product>{
-    const token = window.localStorage.getItem('token');
     return this.http
-      .get<{data: Product}>
-      (`${this.baseUrl}/${id}`, {        
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-    })
-    .pipe(map(response => response.data)) //pipeline
+      .get<{data: Product}>(`${this.baseUrl}/${id}`)
+      .pipe(map(response => response.data)) //pipeline
   }
 
   create(data: Product): Observable<Product>{
-    const token = window.localStorage.getItem('token');
     return this.http
-      .post<{ data: Product }>(this.baseUrl, data, {
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-      })
+      .post<{ data: Product }>(this.baseUrl, data)
       .pipe(map(response => response.data)) //pipeline
   }
 
   update(id: number, data: Product): Observable<Product>{
-    const token = window.localStorage.getItem('token');
     return this.http
-      .put<{ data: Product }>(`${this.baseUrl}/${id}`, data, {
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-      })
+      .put<{ data: Product }>(`${this.baseUrl}/${id}`, data)
       .pipe(map(response => response.data)) //pipeline
   }
 
   destroy(id: number): Observable<any>{
     const token = window.localStorage.getItem('token');
     return this.http
-      .delete(`${this.baseUrl}/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-    })
+      .delete(`${this.baseUrl}/${id}`)
   }
 
 
