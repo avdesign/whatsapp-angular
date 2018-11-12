@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Category } from '../../models';
 import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 // design pattern - Singleton
 
@@ -13,7 +14,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class CategoryHttpService implements HttpResource<Category> {
 
-  private baseUrl = 'http://whatsapp.test/api/categories';
+  private baseUrl = `${environment.api.url}/categories`;
 
   constructor(private http:HttpClient, private authService: AuthService) { }
 

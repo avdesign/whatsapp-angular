@@ -4,13 +4,15 @@ import { Observable } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '../../models';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserHttpService {
 
-  private baseUrl = 'http://whatsapp.test/api/users';
+  private baseUrl = `${environment.api.url}/users`;
 
   constructor(private http: HttpClient) { }
 

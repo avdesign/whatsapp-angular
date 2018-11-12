@@ -5,13 +5,15 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductHttpService implements HttpResource<Product>{
 
-  private baseUrl = 'http://whatsapp.test/api/products';
+  private baseUrl = `${environment.api.url}/products`;
 
   constructor(private http:HttpClient) { }
 
