@@ -1,25 +1,26 @@
 <div class="container">
     <div class="row">
        <h5 class="bd-title" id="content">Lista de categorias</h5>
+        {{sortColumn | json}}
     </div>
     <div class="row">
        <p>
             <button type="button" class="btn btn-primary btn-sm" (click)="CategoryCreateService.showModalCreate()">Adicionar</button>
        </p>
-    </div>
+    </div>    
     <div class="row">
        <table class="table">
           <thead class="thead-dark">
              <tr>
-                <th width="15%" scope="col">ID</th>
-                <th width="60%" scope="col">Nome</th>
+                <th width="15%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+                <th width="60%" scope="col" [sortColumn]="sortColumn" columnName="name" (onSort)="sort($event)">Nome</th>
                 <th width="10%" scope="col">Status</th>
-                <th width="10%" scope="col">Criado</th>
+                <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="created_at" (onSort)="sort($event)">Criado</th>
                 <th width="5%" scope="col">Ações</th>
              </tr>
           </thead>
           <tbody>
-             <tr *ngFor="let category of categories | paginate: {itemsPerPage: 15, currentPage: pagination.page, totalItems: pagination.totalItems}">
+             <tr *ngFor="let category of categories | paginate: {itemsPerPage: 5, currentPage: pagination.page, totalItems: pagination.totalItems}">
                 <td>#{{category.id}}</td>
                 <td>{{category.name}}</td>
                 <td>               

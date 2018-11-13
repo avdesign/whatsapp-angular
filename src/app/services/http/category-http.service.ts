@@ -18,16 +18,15 @@ export class CategoryHttpService implements HttpResource<Category> {
 
   constructor(private http:HttpClient, private authService: AuthService) { }
 
-  list(searchParams: SearchParams): Observable<{data: Array<Category>, meta: any}>{
-    //const token = this.authService.getToken();
-    // makeObject -> class -> http-resource 
-    const sParams = new SearchParamsBuilder(searchParams).makeObject()
+  list(searchParams: SearchParams): Observable<{ data: Array<Category>, meta: any }> {
+    // const token = this.authService.getToken();
+    const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
       fromObject: (<any>sParams)
     });
-    
-    return this.http.get<{data:Array<any>, meta: any}>(this.baseUrl);
-
+    return this.http
+      .get<{ data: Array<Category>, meta: any }>
+      (this.baseUrl, {params});
   }
 
   get(id: number): Observable<Category>{

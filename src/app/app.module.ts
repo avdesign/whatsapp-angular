@@ -1,19 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-;
-
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { ModalComponent } from './components/bootstrap/modal/modal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
 import { AuthService } from './services/auth/auth.service';
-
-
 
 // Pages
 import { LoginComponent } from './components/pages/login/login.component';
@@ -32,6 +26,7 @@ import { ProductListComponent } from './components/pages/products/product-list/p
 import { ProductCreateComponent } from './components/pages/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/pages/products/product-edit/product-edit.component';
 import { ProductDeleteComponent } from './components/pages/products/product-delete/product-delete.component';
+
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
@@ -39,6 +34,8 @@ import { ProductCategoryNewComponent } from './components/pages/product-category
 import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 import { RefereshTokenInterceptorService } from './services/referesh-token-interceptor.service';
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
+
+import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -73,6 +70,7 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     NavbarComponent,
+    SortColumnComponent,
 
     
   ],
