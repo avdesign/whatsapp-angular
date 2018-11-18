@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
@@ -16,26 +16,37 @@ import { UserCreateComponent } from './components/pages/users/user-create/user-c
 import { UserListComponent } from './components/pages/users/user-list/user-list.component';
 import { UserEditComponent } from './components/pages/users/user-edit/user-edit.component';
 import { UserDeleteComponent } from './components/pages/users/user-delete/user-delete.component';
+import { UserSearchComponent } from './components/pages/users/user-search/user-search.component';
 
 import { CategoryListComponent } from './components/pages/categories/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/pages/categories/category-create/category-create.component';
 import { CategoryEditComponent } from './components/pages/categories/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './components/pages/categories/category-delete/category-delete.component';
+import { CategorySearchComponent } from './components/pages/categories/category-search/category-search.component';
+import { CategoryFormComponent } from './components/pages/categories/category-form/category-form.component';
+
 
 import { ProductListComponent } from './components/pages/products/product-list/product-list.component';
 import { ProductCreateComponent } from './components/pages/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/pages/products/product-edit/product-edit.component';
 import { ProductDeleteComponent } from './components/pages/products/product-delete/product-delete.component';
-
-import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+import { ProductSearchComponent } from './components/pages/products/product-search/product-search.component';
+import { ProductFormComponent } from './components/pages/products/product-form/product-form.component';
 
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
-import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
+
 import { RefereshTokenInterceptorService } from './services/referesh-token-interceptor.service';
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 
+import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
+import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
+import { UserFormComponent } from './components/pages/users/user-form/user-form.component';
+import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
+import { IsInvalidDirective } from './directives/is-invalid.directive';
+import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
+import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -59,24 +70,35 @@ function jwtFactory(authService: AuthService) {
     UserListComponent,
     UserEditComponent,
     UserDeleteComponent,
+    UserSearchComponent,
     CategoryListComponent,
     CategoryCreateComponent,
     CategoryEditComponent,
     CategoryDeleteComponent,
+    CategorySearchComponent,
+    CategoryFormComponent,
     ProductListComponent,
     ProductCreateComponent,
     ProductEditComponent,
     ProductDeleteComponent,
+    ProductSearchComponent,
+    ProductFormComponent,
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     NavbarComponent,
     SortColumnComponent,
+    UserFormComponent,
+    FieldErrorComponent,
+    IsInvalidDirective,
+    ListErrorComponent,
+    CardErrorComponent,
 
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,

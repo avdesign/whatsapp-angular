@@ -1,15 +1,22 @@
 <div class="container">
     <div class="row">
-       <h5 class="bd-title" id="content">Lista de categorias</h5>
-        {{sortColumn | json}}
+       <h5 class="bd-title" id="content">Categorias</h5>
     </div>
     <div class="row">
-       <p>
-            <button type="button" class="btn btn-primary btn-sm" (click)="CategoryCreateService.showModalCreate()">Adicionar</button>
-       </p>
+        <table class="table">
+            <tr>
+                <td>
+                    <button class="btn btn-primary" (click)="CategoryCreateService.showModalCreate()">Nova Categoria</button>
+                </td>
+                <td colspan="4">
+                    <category-search (onSearch)="search($event)"></category-search>
+                </td>
+            </tr>
+        </table>
     </div>    
     <div class="row">
        <table class="table">
+
           <thead class="thead-dark">
              <tr>
                 <th width="15%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>

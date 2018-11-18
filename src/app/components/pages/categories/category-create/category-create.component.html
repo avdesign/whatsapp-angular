@@ -3,21 +3,15 @@
         <div modal-title>
             <h5>Adicionar Categoria</h5>
         </div>
-        <div modal-body>           
-            <div class="form-group">
-                <label for="name" class="col-form-label">Nome:</label>
-                <input type="text" class="form-control" id="name" name="name" required
-                    [(ngModel)]="category.name">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="active" name="active" required
-                    [(ngModel)]="category.active">
-                <label for="name" class="label">Ativo?</label>                
-            </div>
+        <div modal-body>
+            <card-error *ngIf="showErrors()">
+                <list-error [errors]="errors"></list-error>
+            </card-error>
+            <category-form [form]="form"></category-form>
         </div>
         <div modal-footer>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Adicionar</button>
         </div>
     </modal>
 </form>

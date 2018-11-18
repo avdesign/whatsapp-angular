@@ -24,27 +24,34 @@ export class ProductListComponent implements OnInit {
     itemsPerPage: 15
   };
 
+  sortColumn = {column: 'created_at', sort: 'desc'};
+
   @ViewChild(ProductCreateComponent) productCreate: ProductCreateComponent;
   @ViewChild(ProductEditComponent) productEdit: ProductEditComponent;
   @ViewChild(ProductDeleteComponent) productDelete: ProductDeleteComponent;
   
   productId:  number;
+  searchText: string;
 
   constructor(private productHttp:ProductHttpService,
               protected ProductEditService: ProductEditService,
               protected ProductCreateService: ProductCreateService,
               protected ProductDeleteService: ProductDeleteService) { 
-      this.ProductEditService.productListComponent = this;
-      this.ProductCreateService.productListComponent = this;
-      this.ProductDeleteService.productListComponent = this;
-    }
+    this.ProductEditService.productListComponent = this;
+    this.ProductCreateService.productListComponent = this;
+    this.ProductDeleteService.productListComponent = this;
+  }
 
   ngOnInit() {
     this.getProducts();
   }
 
   getProducts(){
-    this.productHttp.list({page: this.pagination.page})
+    this.productHttp.list({
+      page: this.pagination.page,
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
+    })
       .subscribe( response => {
         this.products = response.data,
         this.pagination.totalItems = response.meta.total,
@@ -54,6 +61,15 @@ export class ProductListComponent implements OnInit {
 
   pageChanged(page){
     this.pagination.page = page;
+    this.getProducts();
+  }
+
+  sort(sortColumn){
+    this.getProducts();
+  }
+
+  search(search){
+    this.searchText = search;
     this.getProducts();
   }
 

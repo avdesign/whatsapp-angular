@@ -22,11 +22,16 @@ export class UserListComponent implements OnInit {
     itemsPerPage: 15
   };
 
+  sortColumn = {column: 'created_at', sort: 'desc'};
+
+
   @ViewChild(UserCreateComponent) userCreate: UserCreateComponent;
   @ViewChild(UserEditComponent) userEdit: UserEditComponent;
   @ViewChild(UserDeleteComponent) userDelete: UserDeleteComponent;
   
   userId:  number;
+  searchText: string;
+
 
   constructor(private userHttp:UserHttpService,
               protected UserEditService: UserEditService,
@@ -42,7 +47,12 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers(){
-    this.userHttp.list({page: this.pagination.page})
+    this.userHttp.list({
+      page: this.pagination.page,
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
+
+    })
       .subscribe( response => {
         this.users = response.data,
         this.pagination.totalItems = response.meta.total,
@@ -54,4 +64,16 @@ export class UserListComponent implements OnInit {
     this.pagination.page = page;
     this.getUsers();
   }
+
+
+  sort(sortColumn){
+    this.getUsers();
+  }
+
+
+  search(search){
+    this.searchText = search;
+    this.getUsers();
+  }
+
 }

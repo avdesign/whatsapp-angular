@@ -26,7 +26,8 @@ export class CategoryCreateService{
     }    
     
     onCreateError($event: HttpErrorResponse){
-        this.notifyMessage.error('Não foi possivel adicionar a categoria.');
+        //this.notifyMessage.error('Não foi possivel adicionar a categoria.');
+        //console.log($event);
     }    
     
 }

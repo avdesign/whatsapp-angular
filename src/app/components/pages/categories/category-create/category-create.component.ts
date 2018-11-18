@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input  } from '@angular/core';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
-import { Category } from '../../../../models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import fieldsOptions from "../category-form/category-fields-options";
 
 
 @Component({
@@ -12,38 +13,60 @@ import { Category } from '../../../../models';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  category: Category = {
-    name: '',
-    active: true
-  }
+
+  form: FormGroup;
+  @Input()
+  errors = {};
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private categoryHttp: CategoryHttpService) { }
+  constructor(public categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
+      const maxLength = fieldsOptions.name.validationMessage.maxlength;
+      this.form = this.formBuilder.group( {
+          //name: ['', [Validators.required, Validators.maxLength(maxLength)]],
+          name: '',
+          active: true,
+      });
+  }
 
   ngOnInit() {
   }
 
-  submit(){
+  submit() {
     this.categoryHttp
-      .create(this.category)
+      .create(this.form.value)
       .subscribe((category) => {
+        this.form.reset({
+          name: '',
+          active: true
+        });
         this.onSuccess.emit(category);
         this.modal.hide();
-      }, error =>  this.onError.emit(error));  
+      }, (responseError) => {
+        if(responseError.status === 422 ){
+          this.errors = responseError.error.errors;
+          console.log(this.errors);
+        }
+        this.onError.emit(responseError);
+      });
   }
 
-  showModal(){
-    this.modal.show();
+
+  showModal() {
+      this.modal.show();
+      // setTimeout(() => {this.modal.hide();}, 30000)
   }
 
+  showErrors(){
+      return Object.keys(this.errors).length != 0;
 
-  hideModal($event){
-    // fazer algo quando model for fechado
-    //console.log($event);
+  }
+
+  hideModal($event: Event) {
+      console.log($event);
   }
 
 }

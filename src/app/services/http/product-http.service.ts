@@ -25,7 +25,7 @@ export class ProductHttpService implements HttpResource<Product>{
     });
 
     return this.http
-      .get<{data:Array<any>, meta: any}>(this.baseUrl, {
+      .get<{data:Array<Product>, meta: any}>(this.baseUrl, {
         params
     })
 
@@ -50,7 +50,6 @@ export class ProductHttpService implements HttpResource<Product>{
   }
 
   destroy(id: number): Observable<any>{
-    const token = window.localStorage.getItem('token');
     return this.http
       .delete(`${this.baseUrl}/${id}`)
   }
