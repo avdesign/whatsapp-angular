@@ -36,6 +36,11 @@ import { ProductFormComponent } from './components/pages/products/product-form/p
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
 
+import { ProductInputCreateComponent } from './components/pages/products-inputs/product-input-create/product-input-create.component';
+import { ProductInputListComponent } from './components/pages/products-inputs/product-input-list/product-input-list.component';
+import { ProductInputFormComponent } from './components/pages/products-inputs/product-input-form/product-input-form.component';
+import { ProductInputSearchComponent } from './components/pages/products-inputs/product-input-search/product-input-search.component';
+
 import { RefereshTokenInterceptorService } from './services/referesh-token-interceptor.service';
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 
@@ -47,6 +52,7 @@ import { FieldErrorComponent } from './components/bootstrap/field-error/field-er
 import { IsInvalidDirective } from './directives/is-invalid.directive';
 import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
+import { Select2Module } from 'ng2-select2';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -85,6 +91,10 @@ function jwtFactory(authService: AuthService) {
     ProductFormComponent,
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
+    ProductInputCreateComponent,
+    ProductInputListComponent,
+    ProductInputFormComponent,
+    ProductInputSearchComponent,
     NavbarComponent,
     SortColumnComponent,
     UserFormComponent,
@@ -102,6 +112,7 @@ function jwtFactory(authService: AuthService) {
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
+    Select2Module,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

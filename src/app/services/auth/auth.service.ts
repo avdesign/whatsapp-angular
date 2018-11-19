@@ -69,6 +69,11 @@ export class AuthService {
       );
   }
 
-
+  /**
+   * Ajax jquery token 
+   */
+  get authorizationHeader() {
+    return `Bearer ${this.getToken()}`;
+  }
 
 }

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <h5 class="bd-title" id="content">Estoque de Produtos</h5>
+  </div>
+  <div class="row">
+      <table class="table">
+          <tr>
+              <td>
+                <button class="btn btn-primary" (click)="inputCreateService.showModalCreate()">Nova Entrada</button>
+              </td>
+              <td colspan="3">
+                <product-input-search (onSearch)="search($event)"></product-input-search>
+              </td>
+          </tr>
+      </table>
+  </div>    
+  <div class="row">
+     <table class="table">
+
+        <thead class="thead-dark">
+           <tr>
+              <th width="15%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+              <th width="60%" scope="col" [sortColumn]="sortColumn" columnName="product_name" (onSort)="sort($event)">Produtos</th>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="amount" (onSort)="sort($event)">Quant.</th>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="created_at" (onSort)="sort($event)">Criado</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let input of inputs | paginate: {itemsPerPage: 15, currentPage: pagination.page, totalItems: pagination.totalItems}">
+              <td>#{{input.id}}</td>
+              <td>{{input.product.name}}</td>
+              <td>{{input.amount}}</td>
+              <td>{{input.created_at.date | date: 'dd/MM/yyyy'}}</td>
+           </tr>
+        </tbody>
+     </table>
+     <pagination-controls class="my-pagination" (pageChange)="pageChanged($event)"
+          previousLabel="Anterior"
+          nextLabel="Proximo">
+      </pagination-controls>
+  </div>
+</div>
+
+<product-input-create 
+  (onSuccess)="ProductInputCreateService.onCreateSuccess($event)" 
+  (onError)="ProductInputCreateService.onCreateError($event)">
+</product-input-create>

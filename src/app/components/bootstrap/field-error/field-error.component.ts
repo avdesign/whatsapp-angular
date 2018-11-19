@@ -36,7 +36,7 @@ export class FieldErrorComponent implements OnInit {
   showError(){
     return this.field.invalid && (this.field.dirty || this.field.touched);
   }
-
+/*
   getMessage(error){
     let replaceTokens = [this.label];
     if (this.messages && this.messages.hasOwnProperty(error)) {
@@ -49,5 +49,7 @@ export class FieldErrorComponent implements OnInit {
 
     return ValidationMessage.getMessage(error, replaceTokens);
   }
+
+  */
 
 }
