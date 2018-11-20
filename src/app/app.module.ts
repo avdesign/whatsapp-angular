@@ -49,7 +49,7 @@ import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
 import { UserFormComponent } from './components/pages/users/user-form/user-form.component';
 import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
-import { IsInvalidDirective } from './directives/is-invalid.directive';
+import { IsInvalidDirective, IsInvalidControlDirective } from './directives/is-invalid.directive';
 import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 import { Select2Module } from 'ng2-select2';
@@ -100,6 +100,7 @@ function jwtFactory(authService: AuthService) {
     UserFormComponent,
     FieldErrorComponent,
     IsInvalidDirective,
+    IsInvalidControlDirective,
     ListErrorComponent,
     CardErrorComponent,
 

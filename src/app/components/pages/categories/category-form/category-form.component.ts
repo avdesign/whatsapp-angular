@@ -28,6 +28,9 @@ export class CategoryFormComponent implements OnInit {
     return fieldsOptions;
   }
 
+  
+
+
   /**
    *  Retornar por 
   get name(){

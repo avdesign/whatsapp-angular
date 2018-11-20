@@ -14,9 +14,7 @@ export class ProductInputFormComponent implements OnInit {
 
   @Input()
   form: FormGroup;
-  /**
-   * Pegar referencia do Select2
-   */
+
   @ViewChild(Select2Component, {read: ElementRef})
   select2Element: ElementRef;
 
@@ -26,7 +24,7 @@ export class ProductInputFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productIdField.make(this.select2Element)
+    this.productIdField.make(this.select2Element, this.form.get('product_id'));
   }
 
   ngOnChanges(){
@@ -37,5 +35,6 @@ export class ProductInputFormComponent implements OnInit {
   get fieldsOptions(): any {
     return fieldsOptions;
   }
+
 
 }

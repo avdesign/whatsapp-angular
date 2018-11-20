@@ -11,6 +11,7 @@ export class ValidationMessage{
         let message = messages[error];
         const tokens = message.match(/\:[a-z]+/g);
         tokens.forEach((token, index) => message = message.replace(token, replaceTokens[index]));
+        //console.log(message);
         return message;
     }
 }

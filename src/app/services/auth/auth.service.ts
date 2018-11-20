@@ -6,9 +6,9 @@ import { tap } from 'rxjs/operators';
 import { User } from '../../models';
 import { environment } from '../../../environments/environment';
 
-console.log(environment.production);
-console.log(environment.api);
-console.log(environment.api.url);
+//console.log(environment.production);
+//console.log(environment.api);
+//console.log(environment.api.url);
 
 const TOKEN_KEY = 'code_shopping_token';
 

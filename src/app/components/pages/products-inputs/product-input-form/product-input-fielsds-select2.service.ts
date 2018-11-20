@@ -1,6 +1,7 @@
 import { Injectable, ElementRef } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { environment } from '../../../../../environments/environment';
+import { AbstractControl } from '@angular/forms';
 
 declare const $;
 
@@ -11,7 +12,8 @@ export class ProductInputFieldsSelect2Service {
 
   data;
   options: Select2Options;
-  select2Element: ElementRef
+  select2Element: ElementRef;
+  formControl: AbstractControl;
 
   constructor(private authService: AuthService) { }
 
@@ -28,8 +30,9 @@ export class ProductInputFieldsSelect2Service {
       return this.select2Element.nativeElement;
   }
 
-  make(select2Element: ElementRef){
+  make(select2Element: ElementRef, formControl: AbstractControl){
     this.select2Element = select2Element;
+    this.formControl = formControl;
     this.options = {
         maximumInputLength: 3, // Número de caracteries minimo para busca
         dropdownParent: $(this.divModal),
@@ -55,6 +58,22 @@ export class ProductInputFieldsSelect2Service {
         }
     }
     this.data = [];
+    this.onClosingDropdown();
+  }
+
+
+  private onClosingDropdown(){
+    $(this.select2Native).on('select2:closing', (e: Event) => {
+      const element: HTMLInputElement = (<any>e.target);
+      this.formControl.markAsTouched();
+      this.formControl.setValue(element.value);
+
+    })
+  }
+
+
+  updateFormControl(value){ // quando escolher algo select2
+    this.formControl.setValue(value);
   }
 
 }

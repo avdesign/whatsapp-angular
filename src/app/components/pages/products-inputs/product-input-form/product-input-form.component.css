@@ -1,0 +1,12 @@
+.valid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #a72837;
+}
+
+.undo-form-control{
+    border:none;
+    padding: 0;
+}
