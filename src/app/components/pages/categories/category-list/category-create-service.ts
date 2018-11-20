@@ -21,13 +21,14 @@ export class CategoryCreateService{
     }
 
     onCreateSuccess($event: any){
+        //console.log($event.status);
         this.notifyMessage.success('Categoria cadastrada com sucesso!');
         this._categoryListComponent.getCategories();
     }    
     
     onCreateError($event: HttpErrorResponse){
+        //console.log($event.error.errors.name);
         //this.notifyMessage.error('Não foi possivel adicionar a categoria.');
-        //console.log($event);
     }    
     
 }

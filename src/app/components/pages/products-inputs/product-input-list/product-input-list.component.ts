@@ -25,8 +25,9 @@ export class ProductInputListComponent implements OnInit {
   searchText: string;
 
   constructor(private inputHttp:ProductInputHttpService,
-              protected inputCreateService: ProductInputCreateService) { 
-      this.inputCreateService.inputListComponent = this;
+              protected productInputCreateService: ProductInputCreateService) {
+      this.productInputCreateService.productInputListComponent = this;  
+      
     }
 
   ngOnInit() {

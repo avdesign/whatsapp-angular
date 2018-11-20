@@ -36,6 +36,7 @@ export class CategoryListComponent implements OnInit {
               protected CategoryEditService: CategoryEditService,
               protected CategoryCreateService: CategoryCreateService,
               protected CategoryDeleteService: CategoryDeleteService) { 
+                
       this.CategoryEditService.categoryListComponent = this;
       this.CategoryCreateService.categoryListComponent = this;
       this.CategoryDeleteService.categoryListComponent = this;

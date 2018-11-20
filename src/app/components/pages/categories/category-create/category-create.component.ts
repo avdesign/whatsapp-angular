@@ -13,10 +13,8 @@ import fieldsOptions from "../category-form/category-fields-options";
 })
 export class CategoryCreateComponent implements OnInit {
 
-
-  form: FormGroup;
-  @Input()
-  errors = {};
+    errors = {};
+    form: FormGroup;
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
@@ -26,7 +24,8 @@ export class CategoryCreateComponent implements OnInit {
   constructor(public categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
       const maxLength = fieldsOptions.name.validationMessage.maxlength;
       this.form = this.formBuilder.group( {
-          name: ['', [Validators.required, Validators.maxLength(maxLength)]],
+          //name: ['', [Validators.required, Validators.maxLength(maxLength)]],
+          name: '',
           active: true,
       });
   }
@@ -38,19 +37,19 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryHttp
       .create(this.form.value)
       .subscribe((category) => {
-        this.form.reset({
-          name: '',
-          active: true
-        });
-        this.onSuccess.emit(category);
-        this.modal.hide();
-      }, (responseError) => {
+          this.form.reset({
+            name: '',
+            active: true
+          });
+          this.onSuccess.emit(category);
+          this.modal.hide();
+      }, responseError => {
         if(responseError.status === 422 ){
-          this.errors = responseError.error.errors;
-          console.log(this.errors);
+            this.errors = responseError.error.errors;
+            console.log(this.errors);
         }
-        this.onError.emit(responseError);
-      });
+        this.onError.emit(responseError)
+    });
   }
 
 

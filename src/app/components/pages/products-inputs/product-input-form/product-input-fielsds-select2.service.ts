@@ -59,6 +59,18 @@ export class ProductInputFieldsSelect2Service {
     }
     this.data = [];
     this.onClosingDropdown();
+    this.resetSelect2OnSetNull();
+  }
+
+
+
+  private resetSelect2OnSetNull() {
+    this.formControl.valueChanges.subscribe((value) => {
+        if (!value) {
+            const selectField = $(this.select2Native).find('select');
+            selectField.val(null).trigger('change');
+        }
+    });
   }
 
 

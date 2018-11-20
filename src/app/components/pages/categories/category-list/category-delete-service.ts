@@ -27,6 +27,7 @@ export class CategoryDeleteService{
     }
     
     onDeleteError($event: HttpErrorResponse){
+        console.log($event.status);
         if ($event.status == 500) {
             this.notifyMessage.error(
                 'Não foi possivel excluir a categoria,verifique se a mesma não esta relacionada com produtos'

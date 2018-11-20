@@ -1,4 +1,3 @@
-
 import { Injectable } from "@angular/core";
 import { NotifyMessageService } from "../../../../services/notify-message.service";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -9,26 +8,26 @@ import { ProductInputListComponent } from "./product-input-list.component";
 })
 export class ProductInputCreateService{
 
-    private _inputListComponent: ProductInputListComponent
+    private _productInputListComponent: ProductInputListComponent
 
     constructor(private notifyMessage: NotifyMessageService){}
 
-    set inputListComponent(value: ProductInputListComponent){
-        this._inputListComponent = value;
+    set productInputListComponent(value: ProductInputListComponent){
+        this._productInputListComponent = value;
     }
 
     showModalCreate(){
-        this._inputListComponent.inputCreate.showModal();
+        this._productInputListComponent.inputCreate.showModal();
     }
 
     onCreateSuccess($event: any){
-        this.notifyMessage.success('Categoria cadastrada com sucesso!');
-        this._inputListComponent.getInputs();
+        this.notifyMessage.success('Entrada cadastrada com sucesso!');
+        this._productInputListComponent.getInputs();
     }    
     
     onCreateError($event: HttpErrorResponse){
-        //this.notifyMessage.error('Não foi possivel adicionar a categoria.');
-        //console.log($event);
+        this.notifyMessage.error('Não foi possivel adicionar a entrada.');
+        console.log($event.status);
     }    
     
 }

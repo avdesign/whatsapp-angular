@@ -6,7 +6,7 @@
       <table class="table">
           <tr>
               <td>
-                <button class="btn btn-primary" (click)="inputCreateService.showModalCreate()">Nova Entrada</button>
+                <button class="btn btn-primary" (click)="productInputCreateService.showModalCreate()">Nova Entrada</button>
               </td>
               <td colspan="3">
                 <product-input-search (onSearch)="search($event)"></product-input-search>
@@ -42,6 +42,6 @@
 </div>
 
 <product-input-create 
-  (onSuccess)="ProductInputCreateService.onCreateSuccess($event)" 
-  (onError)="ProductInputCreateService.onCreateError($event)">
+  (onSuccess)="productInputCreateService.onCreateSuccess($event)" 
+  (onError)="productInputCreateService.onCreateError($event)">
 </product-input-create>
