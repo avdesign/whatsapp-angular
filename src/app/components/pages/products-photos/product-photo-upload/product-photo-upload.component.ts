@@ -40,9 +40,12 @@ export class ProductPhotoUploadComponent implements OnInit {
                 }
                 this.onError.emit(responseError);
             });
-}
+  }
+
+
   showErros(){
     return Object.keys(this.errors).length !=0;
   }
+  
 
 }

@@ -1,3 +1,13 @@
-<p>
-  product-photo-delete works!
-</p>
+<modal>
+  <h5 modal-title>Exclusão da Foto</h5>
+  <div modal-body>
+    <card-error *ngIf="showErros()">
+      <list-error [errors]="errors"></list-error>
+    </card-error>
+    Deseja excluir a foto?
+  </div>
+  <div modal-footer>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-danger" (click)="deletePhoto()">Excluir</button>
+  </div>
+</modal>
