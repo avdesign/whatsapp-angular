@@ -41,6 +41,11 @@ import { ProductInputListComponent } from './components/pages/products-inputs/pr
 import { ProductInputFormComponent } from './components/pages/products-inputs/product-input-form/product-input-form.component';
 import { ProductInputSearchComponent } from './components/pages/products-inputs/product-input-search/product-input-search.component';
 
+import { ProductPhotoManagerComponent } from './components/pages/products-photos/product-photo-manager/product-photo-manager.component';
+import { ProductPhotoUploadComponent } from './components/pages/products-photos/product-photo-upload/product-photo-upload.component';
+import { ProductPhotoEditComponent } from './components/pages/products-photos/product-photo-edit/product-photo-edit.component';
+import { ProductPhotoDeleteComponent } from './components/pages/products-photos/product-photo-delete/product-photo-delete.component';
+
 import { RefereshTokenInterceptorService } from './services/referesh-token-interceptor.service';
 import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 
@@ -95,6 +100,10 @@ function jwtFactory(authService: AuthService) {
     ProductInputListComponent,
     ProductInputFormComponent,
     ProductInputSearchComponent,
+    ProductPhotoManagerComponent,
+    ProductPhotoUploadComponent,
+    ProductPhotoEditComponent,
+    ProductPhotoDeleteComponent,
     NavbarComponent,
     SortColumnComponent,
     UserFormComponent,

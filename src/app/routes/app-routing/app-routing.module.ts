@@ -9,6 +9,7 @@ import { ProductCategoryListComponent } from '../../components/pages/product-cat
 import { ProductListComponent } from '../../components/pages/products/product-list/product-list.component';
 import { ProductInputListComponent } from '../../components/pages/products-inputs/product-input-list/product-input-list.component';
 import { CategoryListComponent } from '../../components/pages/categories/category-list/category-list.component';
+import { ProductPhotoManagerComponent } from '../../components/pages/products-photos/product-photo-manager/product-photo-manager.component';
 
 
 
@@ -31,6 +32,10 @@ const routes: Routes = [
   },
   {
     path: 'products/list', component: ProductListComponent,
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'products/:product/photos/manager', component: ProductPhotoManagerComponent,
       canActivate: [AuthGuard]
   },
   {
