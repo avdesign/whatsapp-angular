@@ -1,9 +1,11 @@
+import { UserProfile } from './../../models';
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../../components/pages/login/login.component';
 import { UserListComponent } from '../../components/pages/users/user-list/user-list.component';
+import { UserProfileComponent } from '../../components/pages/user-profile/user-profile.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { ProductCategoryListComponent } from '../../components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductListComponent } from '../../components/pages/products/product-list/product-list.component';
@@ -24,6 +26,10 @@ const routes: Routes = [
   },
   {
     path: 'users/list', component: UserListComponent,
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile', component: UserProfileComponent,
       canActivate: [AuthGuard]
   },
   {

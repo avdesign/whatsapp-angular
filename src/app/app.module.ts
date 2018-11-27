@@ -17,6 +17,7 @@ import { UserListComponent } from './components/pages/users/user-list/user-list.
 import { UserEditComponent } from './components/pages/users/user-edit/user-edit.component';
 import { UserDeleteComponent } from './components/pages/users/user-delete/user-delete.component';
 import { UserSearchComponent } from './components/pages/users/user-search/user-search.component';
+import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 
 import { CategoryListComponent } from './components/pages/categories/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/pages/categories/category-create/category-create.component';
@@ -58,11 +59,12 @@ import { IsInvalidDirective, IsInvalidControlDirective } from './directives/is-i
 import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 import { Select2Module } from 'ng2-select2';
+import { PhoneNumberAuthModalComponent } from './components/common/phone-number-auth-modal/phone-number-auth-modal.component';
 
 function jwtFactory(authService: AuthService) {
   return {
       whitelistedDomains: [
-        new RegExp('whatsapp.test/*')
+        new RegExp('whatsapp-laravel.test/*')
       ],
       tokenGetter: () => {
         return authService.getToken();
@@ -82,6 +84,7 @@ function jwtFactory(authService: AuthService) {
     UserEditComponent,
     UserDeleteComponent,
     UserSearchComponent,
+    UserProfileComponent,
     CategoryListComponent,
     CategoryCreateComponent,
     CategoryEditComponent,
@@ -112,6 +115,7 @@ function jwtFactory(authService: AuthService) {
     IsInvalidControlDirective,
     ListErrorComponent,
     CardErrorComponent,
+    PhoneNumberAuthModalComponent,
 
     
   ],

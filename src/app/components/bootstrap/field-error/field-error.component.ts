@@ -30,9 +30,8 @@ export class FieldErrorComponent implements OnInit {
   }
 
   get errors() {
-    //console.log(this.field.errors);
+    /*console.log(this.field.errors);*/
     return this.field.errors;
-      
   }
 
   showError() {
@@ -48,7 +47,7 @@ export class FieldErrorComponent implements OnInit {
               replaceTokens.push(this.messages[error]);
           }
       }
-      //console.log(replaceTokens);
+      /*console.log(replaceTokens);*/
       return ValidationMessage.getMessage(error, replaceTokens);
   }
 

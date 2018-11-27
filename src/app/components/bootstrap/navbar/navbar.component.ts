@@ -9,17 +9,21 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authServer: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   setNameAuth(){
-    return this.authServer.me.name;
+    return this.authService.me.name;
+  }
+
+  getPhotoAuth(){
+    return this.authService.me.profile.photo_url;
   }
 
   logout(){
-    this.authServer.logout()
+    this.authService.logout()
       .subscribe(() => this.router.navigate(['login']))
   }
 

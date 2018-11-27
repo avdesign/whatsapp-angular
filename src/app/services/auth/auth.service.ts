@@ -40,15 +40,18 @@ export class AuthService {
     token ? window.localStorage.setItem(TOKEN_KEY, token) : window.localStorage.removeItem(TOKEN_KEY);
   }
 
-  private setUserFromToken(token: string){
-    const decodeToken = new JwtHelperService().decodeToken(token);
-    this.me = decodeToken ? {
-      id: decodeToken.sub,
-      name: decodeToken.name,
-      email: decodeToken.email
-    }: null;
+  private setUserFromToken(token: string) {
+    const decodedPayloadToken = new JwtHelperService().decodeToken(token);
+    this.me = decodedPayloadToken ? {
+        id: decodedPayloadToken.sub,
+        name: decodedPayloadToken.name,
+        email: decodedPayloadToken.email,
+        profile: decodedPayloadToken.profile
+    } : null;
 
-  }
+    //console.log(this.me);
+}
+
 
   getToken(): string | null{
     return window.localStorage.getItem(TOKEN_KEY);
