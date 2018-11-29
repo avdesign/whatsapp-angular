@@ -1,0 +1,18 @@
+<form (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+      <div modal-title>
+          <h5>Editar Grupo {{form.get('name').value}} </h5>
+      </div>
+      <div modal-body>  
+        <card-error *ngIf="showErrors()">
+            <list-error [errors]="errors"></list-error>
+        </card-error>
+        <chat-group-form [form]="form"></chat-group-form>
+        <img src="{{_chatGroupPhotoUrl}}" width="100%" id="photo_url" alt="{{form.get('name').value}}">
+      </div>
+      <div modal-footer>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Alterar</button>
+      </div>
+  </modal>
+</form>

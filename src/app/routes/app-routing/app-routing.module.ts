@@ -12,7 +12,7 @@ import { ProductListComponent } from '../../components/pages/products/product-li
 import { ProductInputListComponent } from '../../components/pages/products-inputs/product-input-list/product-input-list.component';
 import { CategoryListComponent } from '../../components/pages/categories/category-list/category-list.component';
 import { ProductPhotoManagerComponent } from '../../components/pages/products-photos/product-photo-manager/product-photo-manager.component';
-
+import { ChatGroupListComponent } from './../../components/pages/chat-groups/chat-group-list/chat-group-list.component';
 
 
 const routes: Routes = [
@@ -52,7 +52,10 @@ const routes: Routes = [
     path: 'inputs/list', component: ProductInputListComponent,
       canActivate: [AuthGuard]
   },
-
+  {
+    path: 'groups/list', component: ChatGroupListComponent,
+      canActivate: [AuthGuard]
+  },
 
 ]
 

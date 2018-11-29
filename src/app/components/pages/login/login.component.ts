@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   submit(){
     this.authService.login(this.credentials)
       .subscribe((data) => {
-        this.router.navigate(['profile']);
+        this.router.navigate(['groups/list']);
       }, () => this.showMessageError = true);  
     return false;
   }

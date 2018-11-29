@@ -60,6 +60,11 @@ import { ListErrorComponent } from './components/bootstrap/list-error/list-error
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 import { Select2Module } from 'ng2-select2';
 import { PhoneNumberAuthModalComponent } from './components/common/phone-number-auth-modal/phone-number-auth-modal.component';
+import { ChatGroupCreateComponent } from './components/pages/chat-groups/chat-group-create/chat-group-create.component';
+import { ChatGroupEditComponent } from './components/pages/chat-groups/chat-group-edit/chat-group-edit.component';
+import { ChatGroupFormComponent } from './components/pages/chat-groups/chat-group-form/chat-group-form.component';
+import { ChatGroupDeleteComponent } from './components/pages/chat-groups/chat-group-delete/chat-group-delete.component';
+import { ChatGroupListComponent } from './components/pages/chat-groups/chat-group-list/chat-group-list.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -116,6 +121,11 @@ function jwtFactory(authService: AuthService) {
     ListErrorComponent,
     CardErrorComponent,
     PhoneNumberAuthModalComponent,
+    ChatGroupCreateComponent,
+    ChatGroupEditComponent,
+    ChatGroupFormComponent,
+    ChatGroupDeleteComponent,
+    ChatGroupListComponent,
 
     
   ],
