@@ -66,7 +66,7 @@ export class ChatGroupEditComponent implements OnInit {
    */
   @Input()
   set chatGroupPhotoUrl(value){
-    //this._chatGroupPhotoUrl = value;
+    this._chatGroupPhotoUrl = value;
     //console.log(this._chatGroupPhotoUrl);
   }
 

@@ -13,7 +13,7 @@ import { ProductInputListComponent } from '../../components/pages/products-input
 import { CategoryListComponent } from '../../components/pages/categories/category-list/category-list.component';
 import { ProductPhotoManagerComponent } from '../../components/pages/products-photos/product-photo-manager/product-photo-manager.component';
 import { ChatGroupListComponent } from './../../components/pages/chat-groups/chat-group-list/chat-group-list.component';
-
+import { ChatGroupUserListComponent } from '../../components/pages/chat-group-users/chat-group-user-list/chat-group-user-list.component';
 
 const routes: Routes = [
   {
@@ -54,6 +54,10 @@ const routes: Routes = [
   },
   {
     path: 'groups/list', component: ChatGroupListComponent,
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat-groups/:chat_group/users/list', component: ChatGroupUserListComponent,
       canActivate: [AuthGuard]
   },
 
