@@ -1,3 +1,14 @@
-<p>
-  chat-group-user-create works!
-</p>
+<form class="form" (submit)="submit()" class="select2-parent">
+  <div class="form-group">
+      <label>Usuários</label>
+      <select2 class="form-control undo-form-control"
+               [width]="'100%'"
+               [data]="select2Options.data"
+               [options]="select2Options.options"
+               (valueChanged)="usersId = $event.value"> <!--array [1,3,8] -->
+      </select2>
+  </div>
+  <div class="col-md-5">
+      <button class="btn btn-primary" type="submit">Adicionar Usuários</button>
+  </div>
+</form>

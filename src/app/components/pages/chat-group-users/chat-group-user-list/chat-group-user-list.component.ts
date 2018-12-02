@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatGroup, User } from './../../../../models';
 import { ChatGroupUserHttpService } from './../../../../services/http/chat-group-user-http.service';
 import { ActivatedRoute } from '@angular/router';
+import { ChatGroupUserDeleteComponent } from '../chat-group-user-delete/chat-group-user-delete.component';
 
 @Component({
   selector: 'chat-group-user-list',
@@ -19,9 +20,11 @@ export class ChatGroupUserListComponent implements OnInit {
     pagination = {
         page: 1,
         totalItems: 0,
-        itemsPerPage: 2
+        itemsPerPage: 15
     };
 
+    @ViewChild(ChatGroupUserDeleteComponent)
+    chatGroupUserDelete: ChatGroupUserDeleteComponent;
 
     constructor(private chatGroupUserHttp: ChatGroupUserHttpService,
                 private route: ActivatedRoute) {
@@ -65,7 +68,7 @@ export class ChatGroupUserListComponent implements OnInit {
 
     openModalDelete(userId) {
       this.userIdToDelete = userId;
-      //this.chatGroupUserDeleteModal.showModal();
+      this.chatGroupUserDelete.showModal();
     }
 
 

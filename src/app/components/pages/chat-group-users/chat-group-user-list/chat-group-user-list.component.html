@@ -6,12 +6,8 @@
       <table class="table">
           <tr>                
               <td colspan="5">
-                <!--
-                  <chat-group-user-create [chatGroupId]="chatGroupId">
-                                          (onSuccess)="onCreateSuccess($event)"
-                                          (onError)="onCreateError($event)"
-                  </chat-group-user-create>
-                -->
+                  <chat-group-user-create [chatGroupId]="chatGroupId" (onSuccess)="onCreateSuccess($event)"
+                                          (onError)="onCreateError($event)"></chat-group-user-create>
               </td>
           </tr>
       </table>
@@ -35,7 +31,7 @@
               <td>{{user.email}}</td>
               <td>{{user.profile.phone_number}}</td>
               <td>
-                  <a href="javascript:void(0)">
+                  <a href="javascript:void(0)" (click)="openModalDelete(user.id)">
                     <i class="fas fa-trash-alt"></i>
                 </a> 
               </td>
@@ -49,3 +45,9 @@
       </pagination-controls>
     </div>
 </div> 
+<chat-group-user-delete
+    [chatGroupId]="chatGroupId"
+    [userId]="userIdToDelete"
+    (onSuccess)="getUsers()"
+    (onError)="onInsertError($event)">
+</chat-group-user-delete>

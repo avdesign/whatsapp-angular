@@ -67,6 +67,7 @@ import { ChatGroupDeleteComponent } from './components/pages/chat-groups/chat-gr
 import { ChatGroupListComponent } from './components/pages/chat-groups/chat-group-list/chat-group-list.component';
 import { ChatGroupUserListComponent } from './components/pages/chat-group-users/chat-group-user-list/chat-group-user-list.component';
 import { ChatGroupUserCreateComponent } from './components/pages/chat-group-users/chat-group-user-create/chat-group-user-create.component';
+import { ChatGroupUserDeleteComponent } from './components/pages/chat-group-users/chat-group-user-delete/chat-group-user-delete.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -130,6 +131,7 @@ function jwtFactory(authService: AuthService) {
     ChatGroupListComponent,
     ChatGroupUserListComponent,
     ChatGroupUserCreateComponent,
+    ChatGroupUserDeleteComponent,
 
     
   ],
