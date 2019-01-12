@@ -18,6 +18,8 @@ export class ProductCreateComponent implements OnInit {
     active: true
   }
 
+  errors = {};
+
   @ViewChild(ModalComponent) modal: ModalComponent;
 
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
@@ -34,12 +36,23 @@ export class ProductCreateComponent implements OnInit {
       .subscribe((product) => {
         this.onSuccess.emit(product);
         this.modal.hide();
-      }, error =>  this.onError.emit(error));  
+      }, responseError => {
+        if(responseError.status === 422 ){
+            this.errors = responseError.error.errors;
+            console.log(this.errors);
+        }
+        this.onError.emit(responseError)
+      });  
   }
 
   showModal(){
     this.modal.show();
   }
+
+  showErrors(){
+    return Object.keys(this.errors).length != 0;
+  }
+
 
 
   hideModal($event){

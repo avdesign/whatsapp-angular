@@ -3,7 +3,10 @@
         <div modal-title>
             <h5>Adicionar Produto</h5>
         </div>
-        <div modal-body>           
+        <div modal-body>
+            <card-error *ngIf="showErrors()">
+                <list-error [errors]="errors"></list-error>
+            </card-error>          
             <product-form [product]="product"></product-form>
         </div>
         <div modal-footer>

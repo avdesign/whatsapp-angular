@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import fieldsOptions from "../category-form/category-fields-options";
+
 
 
 @Component({
@@ -18,14 +19,15 @@ export class CategoryCreateComponent implements OnInit {
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
+
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(public categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
+  constructor(public categoryHttp: CategoryHttpService,
+              private formBuilder: FormBuilder) {
       const maxLength = fieldsOptions.name.validationMessage.maxlength;
       this.form = this.formBuilder.group( {
-          //name: ['', [Validators.required, Validators.maxLength(maxLength)]],
-          name: '',
+          name: ['', [Validators.required, Validators.maxLength(maxLength)]],
           active: true,
       });
   }
@@ -54,17 +56,16 @@ export class CategoryCreateComponent implements OnInit {
 
 
   showModal() {
-      this.modal.show();
-      // setTimeout(() => {this.modal.hide();}, 30000)
+    this.modal.show();
+    // setTimeout(() => {this.modal.hide();}, 30000)
   }
 
   showErrors(){
-      return Object.keys(this.errors).length != 0;
-
+    return Object.keys(this.errors).length != 0;
   }
 
   hideModal($event: Event) {
-      //console.log($event);
+    //console.log($event);
   }
 
 }

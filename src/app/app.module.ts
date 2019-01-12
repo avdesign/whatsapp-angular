@@ -72,7 +72,9 @@ import { ChatGroupUserDeleteComponent } from './components/pages/chat-group-user
 function jwtFactory(authService: AuthService) {
   return {
       whitelistedDomains: [
-        new RegExp('whatsapp-laravel.test/*')
+        new RegExp('192.168.0.106:8000/*'),
+        new RegExp('192.168.1.7/*')
+        
       ],
       tokenGetter: () => {
         return authService.getToken();
