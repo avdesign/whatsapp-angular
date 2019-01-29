@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+      <h5 class="bd-title" id="content">Lista de lista de convites {{chatGroup?.name}}</h5>
+  </div>
+  <div class="row">
+      <table class="table">
+          <tr>
+              <td>
+                  <button class="btn btn-primary" (click)="linkInvCreateService.showModalCreate()">Novo Link</button>
+              </td>
+              
+              <td colspan="4">
+                <!--
+                  <chat-group-link-inv-search-form (onSearch)="search($event)"></chat-group-link-inv-search-form>
+                -->
+              </td>
+          </tr>
+      </table>
+  </div>
+
+  <div class="row">
+      <table class="table">
+          <thead class="thead-dark">
+          <tr>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+              <th width="10%" scope="col">Total</th>
+              <th width="10%" scope="col">Restante</th>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="expires_at" (onSort)="sort($event)">Expira em</th>
+              <th width="20%" scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let linkInv of linkInvitations | paginate: {itemsPerPage: pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
+              <td>#{{linkInv.id}}</td>
+              <td>{{linkInv.total}}</td>
+              <td>{{linkInv.remaining}}</td>
+              <td>{{linkInv.expires_at ? (linkInv.expires_at.date | date: 'dd/MM/yyyy') : ''}}</td>
+              <td>
+                <a href="javascript:void(0)" (click)="linkInvEditService.showModalEdit(linkInv.id)">
+                    <i class="fas fa-edit"></i>
+                </a>
+                  <a href="javascript:void(0)" (click)="linkInvDeleteService.showModalDelete(linkInv.id)">
+                      <i class="fas fa-trash-alt"></i>
+                  </a>
+              </td>
+          </tr>
+          
+          </tbody>
+      </table>
+      <pagination-controls class="my-pagination" (pageChange)="pageChanged($event)"
+          previousLabel="Anterior"
+          nextLabel="Proximo">
+      </pagination-controls>
+  </div>
+</div>
+<chat-group-link-inv-create [groupId]="groupId"
+  (onSuccess)="linkInvCreateService.onCreateSuccess($event)" 
+  (onError)="linkInvCreateService.onCreateError($event)">
+</chat-group-link-inv-create>
+<chat-group-link-inv-edit [groupId]="groupId" [linkInvId]="linkInvIdToEdit"
+  (onSuccess)="linkInvEditService.onEditSuccess($event)" 
+  (onError)="linkInvEditService.onEditError($event)">
+</chat-group-link-inv-edit>
+<chat-group-link-inv-delete [groupId]="groupId" [linkInvId]="linkInvToDelete"
+  (onSuccess)="linkInvDeleteService.onDeleteSuccess($event)" 
+  (onError)="linkInvDeleteService.onDeleteError($event)">
+</chat-group-link-inv-delete>

@@ -15,6 +15,7 @@ export class CategoryFormComponent implements OnInit {
   constructor(private changeRef: ChangeDetectorRef) {
 
   }
+  
 
   ngOnInit() {
   }

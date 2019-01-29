@@ -68,6 +68,11 @@ import { ChatGroupListComponent } from './components/pages/chat-groups/chat-grou
 import { ChatGroupUserListComponent } from './components/pages/chat-group-users/chat-group-user-list/chat-group-user-list.component';
 import { ChatGroupUserCreateComponent } from './components/pages/chat-group-users/chat-group-user-create/chat-group-user-create.component';
 import { ChatGroupUserDeleteComponent } from './components/pages/chat-group-users/chat-group-user-delete/chat-group-user-delete.component';
+import { ChatGroupLinkInvDeleteComponent } from './components/pages/chat-group-link-inv/chat-group-link-inv-delete/chat-group-link-inv-delete.component';
+import { ChatGroupLinkInvCreateComponent } from './components/pages/chat-group-link-inv/chat-group-link-inv-create/chat-group-link-inv-create.component';
+import { ChatGroupLinkInvFormComponent } from './components/pages/chat-group-link-inv/chat-group-link-inv-form/chat-group-link-inv-form.component';
+import { ChatGroupLinkInvEditComponent } from './components/pages/chat-group-link-inv/chat-group-link-inv-edit/chat-group-link-inv-edit.component';
+import { ChatGroupLinkInvListComponent } from './components/pages/chat-group-link-inv/chat-group-link-inv-list/chat-group-link-inv-list.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -134,6 +139,11 @@ function jwtFactory(authService: AuthService) {
     ChatGroupUserListComponent,
     ChatGroupUserCreateComponent,
     ChatGroupUserDeleteComponent,
+    ChatGroupLinkInvDeleteComponent,
+    ChatGroupLinkInvCreateComponent,
+    ChatGroupLinkInvFormComponent,
+    ChatGroupLinkInvEditComponent,
+    ChatGroupLinkInvListComponent,   
 
     
   ],

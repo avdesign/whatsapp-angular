@@ -19,7 +19,6 @@ export class CategoryCreateComponent implements OnInit {
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
-
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 

@@ -63,6 +63,16 @@ export interface UserProfile {
     has_photo: boolean;
 }
 
+export interface ChatGroupLinkInvitation {
+    id?: number;
+    total: number;
+    remaining: number;
+    group?: ChatGroup;
+    expires_at?: { date: string };
+    readonly created_at?: { data: string };
+    readonly updated_at?: { date: string };
+}
+
 export interface ChatGroup {
     id?: number;
     name: string;

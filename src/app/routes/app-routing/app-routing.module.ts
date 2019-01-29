@@ -14,6 +14,7 @@ import { CategoryListComponent } from '../../components/pages/categories/categor
 import { ProductPhotoManagerComponent } from '../../components/pages/products-photos/product-photo-manager/product-photo-manager.component';
 import { ChatGroupListComponent } from './../../components/pages/chat-groups/chat-group-list/chat-group-list.component';
 import { ChatGroupUserListComponent } from '../../components/pages/chat-group-users/chat-group-user-list/chat-group-user-list.component';
+import { ChatGroupLinkInvListComponent } from '../../components/pages/chat-group-link-inv/chat-group-link-inv-list/chat-group-link-inv-list.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
     path: 'chat-groups/:chat_group/users/list', component: ChatGroupUserListComponent,
       canActivate: [AuthGuard]
   },
+  {
+    path: 'chat-groups/:chat_group/link-invitations/list', component: ChatGroupLinkInvListComponent,
+      canActivate: [AuthGuard]
+  },
+
 
 ]
 

@@ -1,0 +1,14 @@
+<form (submit)="submit()">
+    <modal (onHide)="hideModal($event)">
+        <div modal-title>
+            <h5>Editar Link</h5>
+        </div>
+        <div modal-body>
+            <chat-group-link-inv-form [form]="form"></chat-group-link-inv-form>
+        </div>
+        <div modal-footer>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Alterar</button>
+        </div>
+    </modal>
+</form>

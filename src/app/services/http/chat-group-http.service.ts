@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { SearchParams, SearchParamsBuilder } from './http-resource';
 import { Injectable } from '@angular/core';
 
-import { environment } from './../../../environments/environment.mock_dev';
+import { environment } from './../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
