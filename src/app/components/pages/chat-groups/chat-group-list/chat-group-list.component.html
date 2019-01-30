@@ -23,10 +23,10 @@
           <thead class="thead-dark">
           <tr>
               <th width="10%" scope="col">ID</th>
-              <th width="25%" scope="col">Nome</th>
+              <th width="20%" scope="col">Nome</th>
               <th width="30%" scope="col">Usuários</th>
               <th width="10%" scope="col">Criado</th>
-              <th width="20%" scope="col">Ações</th>
+              <th width="25%" scope="col">Ações</th>
           </tr>
           </thead>
           <tbody>
@@ -39,6 +39,10 @@
                 <a href="javascript:void(0)" [routerLink]="['/chat-groups', chatGroup.id, 'users','list']">
                     <i class="fas fa-user"></i>
                 </a> |
+                <a href="javascript:void(0)" [routerLink]="['/chat-groups',chatGroup.id,'user-invitations','list']">
+                    <i class="fas fa-thumbs-up"></i>
+                </a> |
+
                   <a href="javascript:void(0)" [routerLink]="['/chat-groups',chatGroup.id,'link-invitations','list']">
                       <i class="fas fa-link"></i>
                   </a> | 

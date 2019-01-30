@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+      <h5 class="bd-title" id="content">Quem quer entrar no grupo {{chatGroup?.name}}</h5>
+  </div>
+  <div class="row">
+      <table class="table">
+          <tr>
+              <td colspan="4">
+                <!--
+                  <chat-group-link-inv-search-form (onSearch)="search($event)"></chat-group-link-inv-search-form>
+                -->
+              </td>
+          </tr>
+      </table>
+  </div>
+
+  <div class="row">
+      <table class="table">
+          <thead class="thead-dark">
+          <tr>
+              <th width="5%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+              <th width="50%" scope="col">Usuário</th>
+              <th width="35%" scope="col">Status</th>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="criated_at" (onSort)="sort($event)">Criado Em</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let inv of invitations | paginate: {itemsPerPage: pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
+              <td>#{{inv.id}}</td>
+              <td>{{inv.user.name + ', ' +inv.user.profile.phone_number}}</td>
+              <td>
+                <ng-container *ngIf="inv.status != STATUS.PENDING; else elseStatus">
+                    <h6>
+                      <span class="badge"
+                            [ngClass]="{'badge-danger': inv.status!==STATUS.APPROVE, 'badge-success': inv.status === STATUS.APPROVE}">
+                        {{inv.status === STATUS.APPROVE ? 'Aprovado' : 'Reprovado'}}
+                      </span>
+                    </h6>
+                </ng-container>
+                <ng-template #elseStatus>
+                    <chat-inv-user-status [groupId]="groupId" [invitation]="inv" (onSuccess)="onStatusChanged($event,inv)"></chat-inv-user-status>
+                </ng-template>
+              </td>
+              <td>{{inv.created_at.date | date: 'dd/MM/yyyy'}}</td>
+          </tr>          
+          </tbody>
+      </table>
+      <pagination-controls class="my-pagination" (pageChange)="pageChanged($event)"
+          previousLabel="Anterior"
+          nextLabel="Proximo">
+      </pagination-controls>
+  </div>
+</div>

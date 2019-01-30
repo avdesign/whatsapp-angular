@@ -3,7 +3,7 @@ import { ModalComponent } from '../../../bootstrap/modal/modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryHttpService } from '../../../../services/http/category-http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import fieldsOptions from "../category-form/category-fields-options";
+import fieldsOptions from '../category-form/category-fields-options';
 
 
 
@@ -45,11 +45,11 @@ export class CategoryCreateComponent implements OnInit {
           this.onSuccess.emit(category);
           this.modal.hide();
       }, responseError => {
-        if(responseError.status === 422 ){
+        if (responseError.status === 422) {
             this.errors = responseError.error.errors;
             console.log(this.errors);
         }
-        this.onError.emit(responseError)
+        this.onError.emit(responseError);
     });
   }
 

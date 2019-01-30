@@ -47,6 +47,24 @@ export interface Product {
     readonly updated_at?: { date: string }
 }
 
+
+export interface ChatInvitationUser {
+    id?: number;
+    user: User;
+    status: ChatInvitationUserStatus;
+    group?: ChatGroup;
+    readonly created_at?: { data: string };
+    readonly updated_at?: { date: string };
+}
+
+export enum ChatInvitationUserStatus {
+    PENDING = 1,
+    APPROVE = 2,
+    REPROVE = 3
+}
+
+
+
 export interface User {
     id?: number;
     name: string;
@@ -67,6 +85,7 @@ export interface ChatGroupLinkInvitation {
     id?: number;
     total: number;
     remaining: number;
+    link: string;
     group?: ChatGroup;
     expires_at?: { date: string };
     readonly created_at?: { data: string };
