@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../../components/pages/login/login.component';
+import { OrderListComponent } from '../../components/pages/orders/order-list/order-list.component';
 import { UserListComponent } from '../../components/pages/users/user-list/user-list.component';
 import { UserProfileComponent } from '../../components/pages/user-profile/user-profile.component';
 import { AuthGuard } from '../../guards/auth.guard';
@@ -25,6 +26,10 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'orders/list', component: OrderListComponent,
+      canActivate: [AuthGuard]
   },
   {
     path: 'users/list', component: UserListComponent,
@@ -69,9 +74,7 @@ const routes: Routes = [
   {
     path: 'chat-groups/:chat_group/user-invitations/list', component: ChatInvUserListComponent,
       canActivate: [AuthGuard]
-  },
-
-
+  }
 
 ]
 

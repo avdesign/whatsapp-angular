@@ -1,3 +1,25 @@
+export enum OrderStatus {
+    STATUS_PENDING = 1,
+    STATUS_APPROVED = 2,
+    STATUS_CANCELLED = 3,
+    STATUS_SENT = 4,
+}
+
+export interface Order {
+    readonly id: number,
+    readonly total: number,
+    status: OrderStatus,
+    payment_link: string,
+    readonly product: Product,
+    readonly amount: number,
+    readonly price: number,
+    readonly user: User,
+    obs: string,
+    readonly created_at?: { date: string };
+    readonly updated_at?: { date: string };
+}
+
+
 export interface Category {
     id?: number;
     name: string;
@@ -43,6 +65,7 @@ export interface Product {
     price: number;
     readonly slug?: string;
     active: boolean;
+    readonly photo_url?: string;
     readonly created_at?: { date: string }
     readonly updated_at?: { date: string }
 }

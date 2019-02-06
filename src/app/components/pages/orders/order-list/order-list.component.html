@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+     <h5 class="bd-title" id="content">Pedidos</h5>
+  </div>
+  <div class="row">
+      <table class="table">
+          <tr>
+              <td>
+                <!--
+                  <button class="btn btn-primary" (click)="OrderCreateService.showModalCreate()">Nova Categoria</button>
+                -->
+              </td>
+              <td colspan="7">
+                  <order-search (onSearch)="search($event)"></order-search>
+              </td>
+          </tr>
+      </table>
+  </div>    
+  <div class="row">
+     <table class="table">
+
+        <thead class="thead-dark">
+           <tr>
+              <th width="5%" scope="col" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+              <th width="12%" scope="col" [sortColumn]="sortColumn" columnName="created_at" (onSort)="sort($event)">Data</th>
+              <th width="32%" scope="col" [sortColumn]="sortColumn" columnName="user" (onSort)="sort($event)">Usuário</th>
+              <th width="10%" scope="col" [sortColumn]="sortColumn" columnName="status" (onSort)="sort($event)">Status</th>
+              <th width="20%" scope="col" [sortColumn]="sortColumn" columnName="product" (onSort)="sort($event)">Produto</th>
+              <th width="5%" scope="col" [sortColumn]="sortColumn" columnName="total" (onSort)="sort($event)">Total</th>
+              <th width="10%" scope="col">Ações</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let order of orders | paginate: {itemsPerPage: pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
+              <td>#{{order.id}}</td>
+              <td>{{order.created_at.date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{order.user.name + ',' + order.user.profile.phone_number}}</td>
+              <td>  
+                <order-status [status]="order.status"></order-status>                
+              </td>
+              <td>{{order.product.name}}</td>
+              <td>{{order.total | numberFormatBr}}</td>
+              <td>
+                <!--
+                  <a href="javascript:void(0)" (click)="OrderEditService.showModalEdit(order.id)">
+                      <i class="fas fa-edit"></i>
+                  </a>
+                -->  
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <pagination-controls class="my-pagination" (pageChange)="pageChanged($event)"
+          previousLabel="Anterior"
+          nextLabel="Proximo">
+      </pagination-controls>
+  </div>
+</div>
+<!--
+<order-edit [orderId]="orderId"
+  (onSuccess)="OrderEditService.onEditSuccess($event)" 
+  (onError)="OrderEditService.onEditError($event)">
+</order-edit>
+-->
